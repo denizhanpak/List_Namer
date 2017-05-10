@@ -11,7 +11,6 @@
 #include <stdlib.h>
 #include <sys/stat.h>
 #include <sys/types.h>
-
 #include "List_Namer.h"
 
 using namespace std;
@@ -25,7 +24,7 @@ List_Namer::List_Namer(char * p, char * nn, char * cn){
     path += "/";
     newName = nn;
     currentNum = cn;
-    
+
     //Open Directory
     directory = opendir(p);
     if (directory == NULL) {
@@ -36,7 +35,7 @@ List_Namer::List_Namer(char * p, char * nn, char * cn){
     //Traverse
     traverse(directory);
 }
- 
+
 //Traverses content of folder
 void List_Namer::traverse(DIR *directory){
     int i;
@@ -54,9 +53,10 @@ void List_Namer::traverse(DIR *directory){
     }
 }
 
+//Changes name of the files using original path
 void List_Namer::renamer(struct dirent *file){
     string oldname, newname;
-    
+
     //Save old name
     oldname = path;
     oldname += file->d_name;
